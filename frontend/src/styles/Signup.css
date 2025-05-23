@@ -1,0 +1,16 @@
+.signup-container {
+    max-width: 450px;
+    padding: 20px;
+    border: 1px solid #dee2e6;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+    margin: auto;
+  }
+  
+  .signup-form input:focus {
+    border-color: #198754;
+    box-shadow: 0 0 5px rgba(25, 135, 84, 0.5);
+    outline: none;
+  }
+  

@@ -1,0 +1,15 @@
+.editpost-container {
+    max-width: 700px;
+    background-color: #fff;
+    padding: 25px 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .editpost-form input:focus,
+  .editpost-form textarea:focus {
+    border-color: #0d6efd;
+    box-shadow: 0 0 8px rgba(13, 110, 253, 0.5);
+    outline: none;
+  }
+  

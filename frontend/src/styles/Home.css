@@ -1,0 +1,10 @@
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+  
+  .search-input {
+    max-width: 400px;
+    min-width: 250px;
+  }
+  
