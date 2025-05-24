@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import '../styles/Newpost.css'; // Import your CSS file for styling
 
 const NewPost = () => {
@@ -6,6 +8,7 @@ const NewPost = () => {
   const [content, setContent] = useState('');
   const [message, setMessage] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -22,7 +25,7 @@ const NewPost = () => {
     setMessage('');
 
     try {
-      const response = await fetch('http://localhost:3000/api/posts', {
+      const response = await fetch('http://localhost:5000/api/posts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,6 +41,7 @@ const NewPost = () => {
         setMessage('Post created successfully!');
         setTitle('');
         setContent('');
+        navigate('/dashboard');
       }
     } catch {
       setMessage('Server error. Please try again later.');

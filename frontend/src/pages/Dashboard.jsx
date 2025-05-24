@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchUserPosts } from '../services/api';
+import { fetchPosts, fetchUserPosts } from '../services/api';
 import { AuthContext } from '../context/AuthContext';
+import PostCard from '../components/PostCard';
 
 const Dashboard = () => {
   const [posts, setPosts] = useState([]);
@@ -11,8 +12,10 @@ const Dashboard = () => {
   useEffect(() => {
     const getUserPosts = async () => {
       try {
-        const data = await fetchUserPosts(user.id);
+        const data = await fetchPosts();
+        console.log(data);
         setPosts(data);
+        
       } catch (error) {
         console.error('Error fetching user posts:', error);
       } finally {
@@ -43,8 +46,7 @@ const Dashboard = () => {
       <div className="posts-list row gy-4">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <div key={post.id} className="col-md-6 col-lg-4">
-            </div>
+            <PostCard post={post} key={post.id} isAuthor={true} showActions={true} onDelete={(id, username) => {}} />
           ))
         ) : (
           <div className="no-posts text-center w-100 py-5">

@@ -21,7 +21,6 @@ const Login = () => {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
-        credentials: 'include', // Important to handle cookies
       });
 
       const data = await response.json();
@@ -37,6 +36,7 @@ const Login = () => {
         // navigate('/dashboard');
       }
     } catch (error) {
+      console.log(error)
       setError('Network error');
     } finally {
       setLoading(false);

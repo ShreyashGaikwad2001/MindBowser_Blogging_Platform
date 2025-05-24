@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 const PostCard = ({ post, isAuthor = false, showActions = false, onDelete }) => {
   return (
-    <div className="card mb-3 shadow-sm">
+    <div className="card mb-3 shadow-sm w-auto m-4" >
       <div className="card-body">
         <h5 className="card-title">{post.title}</h5>
         <p className="card-text text-truncate" style={{ maxHeight: '4.5em' }}>
           {post.content}
         </p>
         <p className="card-text">
-          <small className="text-muted">By {post.author || post.username || 'Unknown'}</small>
+          <small className="text-muted">By {post.author.username || post.username || 'Unknown'}</small>
         </p>
         <Link to={`/posts/${post.id}`} className="btn btn-primary btn-sm me-2">
           Read More
