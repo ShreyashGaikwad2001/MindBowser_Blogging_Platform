@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { fetchPosts, fetchUserPosts } from '../services/api';
+import { fetchPosts, deletePost, fetchUserPosts } from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 import PostCard from '../components/PostCard';
+import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
-
+  const navigate = useNavigate();
+  
   useEffect(() => {
     const getUserPosts = async () => {
       try {
@@ -46,7 +48,10 @@ const Dashboard = () => {
       <div className="posts-list row gy-4">
         {posts.length > 0 ? (
           posts.map((post) => (
-            <PostCard post={post} key={post.id} isAuthor={true} showActions={true} onDelete={(id, username) => {}} />
+            <PostCard post={post} key={post.id} isAuthor={true} showActions={true} onDelete={(id) => {
+              deletePost(id); 
+              setPosts(posts.filter(postItem => postItem.id !== id));
+            }} />
           ))
         ) : (
           <div className="no-posts text-center w-100 py-5">

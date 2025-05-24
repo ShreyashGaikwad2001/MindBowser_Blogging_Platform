@@ -12,6 +12,7 @@ export default function PostDetail() {
     const fetchPost = async () => {
       try {
         const data = await fetchPostById(id);
+        console.log(data);
         setPost(data);
       } catch (error) {
         console.error('Error fetching post:', error);
@@ -46,7 +47,7 @@ export default function PostDetail() {
         <div className="card-body">
           <h2 className="card-title">{post.title}</h2>
           <p className="card-subtitle mb-2 text-muted">
-            <strong>Author:</strong> {post.author || post.username || 'Unknown'}
+            <strong>Author:</strong> {post.author.username || post.username || 'Unknown'}
           </p>
           <hr />
           <p className="card-text">{post.content}</p>

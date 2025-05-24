@@ -15,6 +15,7 @@ const EditPost = () => {
       try {
         setLoading(true);
         const response = await axios.get(`http://localhost:5000/api/posts/${id}`);
+        console.log(response)
         setPost(response.data);
       } catch (error) {
         console.error('Error fetching the post:', error);

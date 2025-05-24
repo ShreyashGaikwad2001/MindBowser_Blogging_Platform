@@ -32,10 +32,11 @@ const Login = () => {
       if (!response.ok) {
         setError(data.message || 'Login failed');
       } else {
-        localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         alert('Login successful!');
-        loginUser(data.user);
+        const token = data.token;
+        const user = data.user;
+        loginUser({ ...user, token }); // Include token in user object
         navigate('/dashboard');
       }
     } catch (error) {
