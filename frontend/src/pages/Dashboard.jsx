@@ -3,13 +3,11 @@ import { Link } from 'react-router-dom';
 import { fetchPosts, deletePost, fetchUserPosts } from '../services/api';
 import { AuthContext } from '../context/AuthContext';
 import PostCard from '../components/PostCard';
-import { useNavigate } from 'react-router-dom';
 
 const Dashboard = () => {
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
   
   useEffect(() => {
     const getUserPosts = async () => {
