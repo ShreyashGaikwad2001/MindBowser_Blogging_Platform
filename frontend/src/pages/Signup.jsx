@@ -18,7 +18,6 @@ const Signup = () => {
     e.preventDefault();
     try {
       const response = await signup(formData);
-
       const { token, user } = response.data;
 
       // Store token and update user context

@@ -1,10 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import '../styles/Signup.css'; // Your custom CSS for styling
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: '', password: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+  const { loginUser } = useContext(AuthContext);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,12 +32,11 @@ const Login = () => {
       if (!response.ok) {
         setError(data.message || 'Login failed');
       } else {
-        // Store token and user info locally if needed
         localStorage.setItem('token', data.token);
         localStorage.setItem('user', JSON.stringify(data.user));
         alert('Login successful!');
-        // TODO: Redirect user or update UI after login, e.g.:
-        // navigate('/dashboard');
+        loginUser(data.user);
+        navigate('/dashboard');
       }
     } catch (error) {
       console.log(error)
